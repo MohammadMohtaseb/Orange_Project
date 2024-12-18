@@ -139,7 +139,7 @@ body {
         justify-content: space-between;
         gap: 20px;
         padding: 20px;
-
+max-width: 900px;
         margin: 10px auto auto;
         border-radius: 10px;
 }
