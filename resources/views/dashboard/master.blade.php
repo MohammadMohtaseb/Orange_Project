@@ -83,7 +83,82 @@
     <script src="{{ asset('/js/custom.min.js') }}"></script>
 	<script src="{{ asset('/js/deznav-init.js') }}"></script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('search');
+    const studentTableBody = document.getElementById('student-table-body');
+    const paginationLinks = document.getElementById('pagination-links');
 
+    // Function to fetch students from the server with search term
+    function fetchStudents(query = '') {
+        const url = new URL(window.location.href);
+        url.searchParams.set('search', query); // Add search query to the URL
+
+        // Fetch students data with pagination and search term
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                // Update table with the new student list
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data;
+                const newTableBody = tempDiv.querySelector('#student-table-body');
+                const newPaginationLinks = tempDiv.querySelector('#pagination-links');
+
+                // Update table body with new rows
+                studentTableBody.innerHTML = newTableBody.innerHTML;
+
+                // Update pagination links
+                if (newPaginationLinks) {
+                    paginationLinks.innerHTML = newPaginationLinks.innerHTML;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching student data:', error);
+            });
+    }
+
+    // Trigger AJAX request when search input changes
+    searchInput.addEventListener('input', function() {
+        const query = searchInput.value.trim();
+        fetchStudents(query);  // Fetch students based on search query
+    });
+
+    // Trigger an initial fetch for the students table (no search term)
+    fetchStudents();
+
+    // Pagination handling
+    paginationLinks.addEventListener('click', function(event) {
+        const pageLink = event.target.closest('a');
+        if (pageLink && pageLink.href) {
+            const url = new URL(pageLink.href);
+            const query = searchInput.value.trim();  // Keep the search query
+            url.searchParams.set('search', query);
+
+            // Perform the fetch with the new URL for the page
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = data;
+                    const newTableBody = tempDiv.querySelector('#student-table-body');
+                    const newPaginationLinks = tempDiv.querySelector('#pagination-links');
+
+                    // Update table body with new rows
+                    studentTableBody.innerHTML = newTableBody.innerHTML;
+
+                    // Update pagination links
+                    if (newPaginationLinks) {
+                        paginationLinks.innerHTML = newPaginationLinks.innerHTML;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching student data:', error);
+                });
+        }
+    });
+});
+    
+</script>
 
 </body>
 </html>

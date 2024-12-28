@@ -12,13 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class ForgetPassword extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $id;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($id)
     {
-        //
+        $this->id = $id;
     }
 
     /**
@@ -37,7 +37,7 @@ class ForgetPassword extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'forget_mail',
         );
     }
 
@@ -48,6 +48,6 @@ class ForgetPassword extends Mailable
      */
     public function attachments(): array
     {
-        return [];
-    }
+        return[];
+}
 }

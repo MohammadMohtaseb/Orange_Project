@@ -25,9 +25,19 @@
                     @enderror
                 </div>
 
+
+                <div class="form-group">
+                    <label for="years">Years:</label>
+                    <input type="text" name="years" id="years" class="form-control" value="{{ old('name', $cohort->years) }}" required>
+                     @error('years')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+                </div>
+
+
                 <div class="form-group">
                     <label for="academy_id">Academy</label>
-                    <select name="academy_id" id="academy_id" class="form-control" style="color: white; background-color: #2C254A;" required>
+                    <select name="academy_id" id="academy_id" class="form-control" style="color: white; background-color: #FF7900;" required>
                         <option value="" style="color: white; background-color: #333;">Select an academy</option>
                         @foreach ($academies as $academy)
                             <option value="{{ $academy->id }}"
@@ -39,6 +49,13 @@
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <label for="picture">Picture:</label>
+                    <input type="file" name="picture" id="picture" class="form-control">
+                    @error('picture')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
 
                 <button type="submit" class="btn btn-success" style="color: white">Update</button>
                 <a href="{{ route('cohorts') }}" class="btn btn-secondary">Cancel</a>

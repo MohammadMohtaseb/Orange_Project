@@ -19,13 +19,13 @@
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-text-input id="email" name="email" type="email" class="form-control" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -49,16 +49,25 @@
 
         <div>
             <x-input-label for="profile_picture" :value="__('Profile Picture')" />
-            <input id="profile_picture" name="profile_picture" type="file" class="mt-1 block w-full">
+            @if ($user->profile_picture)
+                <div class="mt-4 flex items-center flex justify-center pb-2">
+                    <img
+                        src="{{ asset('storage/' . $user->profile_picture) }}"
+                        alt="Profile Picture"
+                        class="h-12 w-12 rounded-full object-cover border border-gray-200 shadow-sm rounded-circle"
+                        style="max-width: 100px; aspect-ratio: 1;"
+                    >
+                </div>
+            @endif
+            <input id="profile_picture" name="profile_picture" type="file" class="form-control">
             <x-input-error class="mt-2" :messages="$errors->get('profile_picture')" />
 
-            @if ($user->profile_picture)
-                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture" class="mt-4 h-16 w-16 rounded-full">
-            @endif
         </div>
 
+
+
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button >{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p

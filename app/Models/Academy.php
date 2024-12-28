@@ -9,11 +9,11 @@ class Academy extends Model
 {
     use HasFactory;
 
-// app/Models/Academy.php
-
+protected $table = 'academies';
 protected $fillable = [
     'name',
-    'governate',
+    'description',
+    // 'governate',
     'picture', // Add this
 ];
 
@@ -21,5 +21,10 @@ protected $fillable = [
     public function cohorts()
     {
         return $this->hasMany(Cohort::class);
+    }
+
+    public function student()
+    {
+        return $this->hasMany(Student::class);
     }
 }

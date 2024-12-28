@@ -32,6 +32,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Description</th>
                             <th>Picture</th>
                             <th>Actions</th>
                         </tr>
@@ -41,6 +42,7 @@
                             <tr>
                                 <td>{{ $academy->id }}</td>
                                 <td>{{ $academy->name }}</td>
+                                <td>{{ $academy->description }}</td>
                                 <td>
                                     <img src="{{ asset('storage/' . $academy->picture) }}" alt="Academy Picture" width="100">
                                 </td>
@@ -48,7 +50,7 @@
                                     <a href="{{ route('academy.edit', $academy->id) }}" class="btn btn-primary btn-sm">
                                         <i class="fa fa-edit"></i> Edit
                                     </a>
-                                    <form action="{{ route('academy.delete', $academy->id) }}" method="POST" style="display:inline-block;">
+                                    <form action="{{ route('academy.delete', $academy->id) }}" method="POST" style="display:inline-block; margin-top : 5px">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">

@@ -27,14 +27,17 @@ class CohortController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'academy_id'=>'required|string'
+            'academy_id'=>'required|string',
+            'years' => 'required|string',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Cohort::create([
-            'academy_id' =>$request->academy_id,
-            'name' => $request->name,
-        ]);
+        $data = $request->all();
 
+        if ($request->hasFile('picture')) {
+            $data['picture'] = $request->file('picture')->store('cohort', 'public');
+        }
+        Cohort::create($data);
         return redirect()->route('cohorts');
     }
 
@@ -47,20 +50,31 @@ class CohortController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|string',
-            'academy_id' => 'required|exists:academies,id|integer',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string',
+        'academy_id' => 'required|exists:academies,id|integer', // التحقق من وجود academy_id
+        'years' => 'required|string',
+        'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
-        $cohort = Cohort::findOrFail($id);
-        $cohort->update([
-            'name' => $request->name,
-            'academy_id' => $request->academy_id,
-        ]);
+    $cohort = Cohort::findOrFail($id);
+    $data = $request->only(['name', 'academy_id', 'years']); // تأكد من تحديث الحقول فقط
 
-        return redirect()->route('cohorts');
+    // إذا كان هناك صورة جديدة
+    if ($request->hasFile('picture')) {
+        $data['picture'] = $request->file('picture')->store('cohort', 'public');
     }
+
+    // تحديث البيانات
+    $cohort->update($data);
+
+    return redirect()->route('cohorts');
+}
+
+
+
+
 
     public function destroy($id)
     {

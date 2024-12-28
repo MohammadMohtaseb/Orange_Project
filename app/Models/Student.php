@@ -14,8 +14,9 @@ class Student extends Model
         'name',
         'email',
         'cohort_id',
-        'job_title',
-        'company_name',
+        'academy_id',
+        'employment_status',
+        'linkedin',
         'picture'
     ];
 
@@ -26,6 +27,11 @@ class Student extends Model
     {
         return $this->belongsTo(Cohort::class);
     }
+
+    public function academy()
+{
+    return $this->belongsTo(Academy::class);
+}
 
     /**
      * Get the job associated with the student.

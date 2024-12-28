@@ -9,7 +9,7 @@ class Cohort extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['academy_id', 'name'];
+    protected $fillable = ['academy_id', 'name','picture','years'];
 
     public function academy()
     {

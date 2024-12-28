@@ -6,31 +6,46 @@ namespace App\Http\Controllers;
 
 use App\Models\Academy;
 use App\Models\Cohort;
+use App\Models\Student;
 
 class VisitController extends Controller
 {
-    // Method to show the list of academies
     public function index()
     {
-        $academies = Academy::all(); // Fetch all academies
-        return view('academy')->with('academies', $academies);
+        $academies = Academy::count();
+        $Student = Student::count();
 
+        return view('home', compact('academies', 'Student'));
     }
 
-    // Method to show the cohorts of a specific academy
+
+    public function showacademy()
+    {
+        $academies = Academy::all();
+
+        return view('academy', compact('academies', ));
+    }
+
+
+
+
     public function showCohorts($academyId)
     {
-        $academy = Academy::findOrFail($academyId); // Find the academy by ID
-        $cohorts = $academy->cohorts; // Fetch the cohorts related to the academy
+        $academy = Academy::findOrFail($academyId);
+        $cohorts = $academy->cohorts;
 
-        return view('academies.showCohorts', compact('academy', 'cohorts'));
+        return view('cohort', compact('academy', 'cohorts'));
     }
 
-        // Method to show a specific cohort with its students
+
+
+
+
     public function showCohortWithStudents($cohortId)
     {
-        $cohort = Cohort::with('students')->findOrFail($cohortId); // Fetch the cohort with its students
+        $cohort = Cohort::with('students')->findOrFail($cohortId);
 
-        return view('students', compact('cohort'));
+        $students = $cohort->students;
+        return view('students', compact('cohort','students'));
     }
 }

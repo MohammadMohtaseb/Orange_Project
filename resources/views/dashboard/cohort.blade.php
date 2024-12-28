@@ -32,6 +32,8 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Academy</th>
+                            <th>Years</th>
+                            <th>Picture</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -41,6 +43,10 @@
                                 <td>{{ $cohort->id }}</td>
                                 <td>{{ $cohort->name }}</td>
                                 <td>{{ $cohort->academy->name }}</td>
+                                <td>{{ $cohort->years }}</td>
+                                <td>
+                                    <img src="{{ asset('storage/' . $cohort->picture) }}" alt="Academy Picture" width="100">
+                                </td>
                                 <td>
                                     <a href="{{ route('cohort.edit', $cohort->id) }}" class="btn btn-primary btn-sm">
                                         <i class="fa fa-edit"></i> Edit

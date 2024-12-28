@@ -4,42 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="{{ asset('asets/css/student.css') }}">
+    <title>Student</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('student.css') }}">
 </head>
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <!-- Left: Logo -->
-        <div class="logo">
-            <img src="logo.png" alt="Orange Logo">
-        </div>
-        <!-- Center: Navigation Links -->
-        <ul class="nav-links">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">How It Works?</a></li>
-        </ul>
-        <!-- Right: Search and Login Button -->
-        <div class="right-nav">
-            <span class="search-icon">🔍</span>
-            <a href="#" class="login-btn">Login</a>
-        </div>
-    </nav>
+   @extends('layout-front.header')
 
     <!-- Header Section -->
     <main>
-        <div class="container">
-            <div class="head">
+        <div class="containerSa">
+            <div class="heads">
                 <h1>Take student experience to the next level</h1>
             </div>
+            <br>
+            <br>
 
             <!-- Breadcrumb Navigation -->
             <div class="breadcrumb">
-                {{-- <a href="#">Home</a> &nbsp;&rsaquo;&nbsp; --}}
-                <span class="current">{{$cohort->academy->name }} Academy</span> &nbsp;&rsaquo;&nbsp;
-                <span class="current">{{$cohort->name}}</span>
+                <a href="{{ route('watch.home') }}">Home</a> &gt;
+                <a href="{{ route('watch.cohorts', $cohort->id) }}" style="color: #FF7900"><span>Student</span></a>
             </div>
 
             <!-- Text Section -->
@@ -52,138 +42,31 @@
             </div>
 
             <!-- Cards Section -->
-            <div class="card-container">
-                @foreach ($cohort->students as $student)
-                <div class="card">
+            <div class="card-containerS">
+                <!-- Card 1 -->
+                @foreach ($students as $student)
+                <div class="cardS">
                     <div class="card-header">
                     </div>
                     <br>
-                    @if($student->picture)
-                        <img class="avatar" src="{{ asset('storage/' . $student->picture) }}" alt="Picture of {{ $student->name }}" width="100">
-                        @else
-                        <img class="avatar" src="{{ asset('assets/images/user.png ') }}" alt="Picture of {{ $student->name }}" width="100">
-                    @endif
+                    <img class="avatar" src=" {{ asset('storage/' . $student->picture) }}" alt="Jackie Chui">
                     <br>
                     <br>
-                    <h2>{{$student->name}}</h2>
+                    <h2>{{ $student->name }}</h2>
                     <div class="card-body">
-                        <p><strong>Job title:</strong> </p> <p> {{$student->job_title}}</p>
-                        <p><strong>Company:</strong></p> <p> {{$student->company_name}}</p>
-                        <p><strong>Favorite Figma tool:</strong></p> <p> Selection Colors</p>
+                        <p><strong>linkedin:</strong> </p> <a href="{{ $student->linkedin }}" style="text-decoration: none" target="_blank"><p>linkedin link</p></a>
+                        <p><strong>Employment Status:</strong></p> <p> {{ $student->employment_status }}</p>
                     </div>
                 </div>
                 @endforeach
-                <!-- Card 1 -->
-                <div class="card">
-                    <div class="card-header">
-                    </div>
-                    <br>
-                    <img class="avatar" src="{{asset('user.jpg')}}" alt="Jackie Chui">
-                    <br>
-                    <br>
-                    <h2>Jackie Chui</h2>
-                    <div class="card-body">
-                        <p><strong>Superpower:</strong> </p> <p> design</p>
-                        <p><strong>Weakness:</strong></p> <p> Visual design</p>
-                        <p><strong>Favorite Figma tool:</strong></p> <p> Selection Colors</p>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="card">
-                    <div class="card-header">
-                    </div>
-                    <br>
-                    <img class="avatar" src="{{asset('user.jpg')}}" alt="Jackie Chui">
-                    <br>
-                    <br>
-                    <h2>Jackie Chui</h2>
-                    <div class="card-body">
-                        <p><strong>Superpower:</strong> </p> <p> design</p>
-                        <p><strong>Weakness:</strong></p> <p> Visual design</p>
-                        <p><strong>Favorite Figma tool:</strong></p> <p> Selection Colors</p>
-                    </div>
-                </div>
-                  <!-- Card 3 -->
-                <div class="card">
-                    <div class="card-header">
-                    </div>
-                    <br>
-                    <img class="avatar" src="{{asset('user.jpg')}}" alt="Jackie Chui">
-                    <br>
-                    <br>
-                    <h2>Jackie Chui</h2>
-                    <div class="card-body">
-                        <p><strong>Superpower:</strong> </p> <p> design</p>
-                        <p><strong>Weakness:</strong></p> <p> Visual design</p>
-                        <p><strong>Favorite Figma tool:</strong></p> <p> Selection Colors</p>
-                    </div>
-                </div>
-                  <!-- Card 4 -->
-                <div class="card">
-                    <div class="card-header">
-                    </div>
-                    <br>
-                    <img class="avatar" src="{{asset('user.jpg')}}" alt="Jackie Chui">
-                    <br>
-                    <br>
-                    <h2>Jackie Chui</h2>
-                    <div class="card-body">
-                        <p><strong>Superpower:</strong> </p> <p> design</p>
-                        <p><strong>Weakness:</strong></p> <p> Visual design</p>
-                        <p><strong>Favorite Figma tool:</strong></p> <p> Selection Colors</p>
-                    </div>
-                </div>
-                  <!-- Card 5 -->
-                <div class="card">
-                    <div class="card-header">
-                    </div>
-                    <br>
-                    <img class="avatar" src="{{asset('user.jpg')}}" alt="Jackie Chui">
-                    <br>
-                    <br>
-                    <h2>Jackie Chui</h2>
-                    <div class="card-body">
-                        <p><strong>Superpower:</strong> </p> <p> design</p>
-                        <p><strong>Weakness:</strong></p> <p> Visual design</p>
-                        <p><strong>Favorite Figma tool:</strong></p> <p> Selection Colors</p>
-                    </div>
-                </div>
-                  <!-- Card 6 -->
-                <div class="card">
-                    <div class="card-header">
-                    </div>
-                    <br>
-                    <img class="avatar" src="{{asset('user.jpg')}}" alt="Jackie Chui">
-                    <br>
-                    <br>
-                    <h2>Jackie Chui</h2>
-                    <div class="card-body">
-                        <p><strong>Superpower:</strong> </p> <p> design</p>
-                        <p><strong>Weakness:</strong></p> <p> Visual design</p>
-                        <p><strong>Favorite Figma tool:</strong></p> <p> Selection Colors</p>
-                    </div>
-                </div>
 
 
-            </div>
-            <!-- Pagination -->
 
-            <div class="pagination">
-                <a href="#" class="prev-btn">Show More</a>
 
             </div>
         </div>
         </div>
     </main>
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">About Us</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Contact</a>
-            </div>
-            <p>&copy; 2024 Your Company. All rights reserved.</p>
-        </div>
-    </footer>
+   @extends('layout-front.footer')
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><b>Orange</b> Academy for Programming</title>
+    <title>Orange</title>
 
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 </head>
 <body>
    {{--  <div class="nav-overlay"></div> --}}
@@ -24,7 +25,7 @@
         <div class="hero-content">
             <h1 ><span class="orange" style="color: #FF7900; ">Orange</span> Academy for Programming</h1>
             <p>The first academy of its kind in the Middle East that provides young people with free, world-class training in programming languages and the skills needed to enter the job market.</p>
-            <button class="join-now">Send</button>
+            <button class="join-now">Join Now</button>
         </div>
     </section>
 
@@ -33,24 +34,22 @@
         <h2 style="">Our Success</h2>
         <div class="stats-container">
             <div class="stat-item">
-                <h3>{{App\Models\Student::count()}}</h3>
-                <p>Number Of Students</p>
+                <h3>{{ $Student }}</h3>
+                <p>Number of Students</p>
+            </div>
+
+            
+            <div class="stat-item">
+                <h3>{{ $academies }}</h3>
+                <p>Number Of academies</p>
             </div>
             <div class="stat-item">
-                <h3>{{ round((App\Models\Student::whereNotNull('company_name')->count() / App\Models\Student::count()) * 100) }}%</h3>
+                <h3>15+</h3>
+                <p>Years Of Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3>75%</h3>
                 <p>Percentage Of Success</p>
-            </div>
-            <div class="stat-item">
-                <h3>{{App\Models\Cohort::count()}}</h3>
-                <p>Number Of Cohorts</p>
-            </div>
-            <div class="stat-item">
-                <h3>{{App\Models\Academy::count()}}</h3>
-                <p>Number Of Academies</p>
-            </div>
-            <div class="stat-item">
-                {{-- <h3>15+</h3>
-                <p>Years Of Experience</p> --}}
             </div>
         </div>
     </section>
@@ -107,61 +106,35 @@
             <div class="support-form">
                 <h2>Need Support</h2>
                 <p>Contact professionals for guidance</p>
-                <form id="support-form" style="display: flex; align-items: center;">
-                    <div class="input-wrapper">
-                        <label for="full-name">Your Name</label>
-                        <input type="text" id="full-name" placeholder="Enter your full name">
-                    </div>
-                    <div class="input-wrapper">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="Enter Your Email">
-                    </div>
-                    <div class="input-wrapper">
-                        <label for="telephone">Mobile Number</label>
-                        <input type="tel" id="telephone" placeholder="Enter Your Mobile Number">
-                    </div>
-                    <div class="input-wrapper">
-                        <label for="Query">Your Query</label>
-                        <input style="line-height: 12ex;" id="Query" placeholder="Your Query">
-                    </div>
+                <form style="display: flex; align-items: center;">
+                <div class="input-wrapper">
+                    <label for="full-name">Your Name</label>
+                    <input type="text" id="full-name" placeholder="Enter your full name">
+                </div>
+                <div class="input-wrapper">
+                    <label for="email">Email Address</label>
+                    <input type="email"id="email" placeholder="Enter Your Email">
+                </div>
+                <div class="input-wrapper">
+                    <label for="telephone">Mobile Number</label>
+                    <input type="tel"id="telephone" placeholder="Enter Your Mobile Number">
+                </div>
+                <div class="input-wrapper">
+                    <label for="Query">Your Query</label>
+                    <input style="line-height: 12ex;" id="Query" placeholder="Your Query"></input>
+                </div>
                     <button type="submit">Join Now</button>
                 </form>
             </div>
-
-            <script>
-                document.getElementById("support-form").addEventListener("submit", function (event) {
-                    event.preventDefault(); // Prevent the form from submitting normally
-
-                    // Get form values
-                    const name = document.getElementById("full-name").value;
-                    const email = document.getElementById("email").value;
-                    const telephone = document.getElementById("telephone").value;
-                    const query = document.getElementById("Query").value;
-
-                    // Static recipient email
-                    const recipientEmail = "alhussienmohammad9@gmail.com";
-
-                    // Create Gmail compose URL
-                    const subject = encodeURIComponent("Support Request from " + name);
-                    const body = encodeURIComponent(
-                        `Name: ${name}\nEmail: ${email}\nPhone: ${telephone}\n\nQuery:\n${query}`
-                    );
-
-                    const gmailComposeURL = `https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=${recipientEmail}&su=${subject}&body=${body}`;
-
-                    // Open Gmail compose page
-                    window.open(gmailComposeURL, "_blank");
-                });
-            </script>
-
-
         </div>
     </section>
     @extends('layout-front.footer')
 
         </div>
 
+       {{--  @section('js') --}}
         <script src="{{ asset('assets/js/script.js') }}"></script>
+        {{-- @endsection --}}
 
 </body>
 </html>

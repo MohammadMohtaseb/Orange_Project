@@ -15,11 +15,28 @@
             <h2>Edit Student</h2>
         <form action="{{ route('student.update', $Student->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('POST')
+            @method('PUT')
+
+            <div class="form-group" >
+                <label for="academy_id">Academy</label>
+                <select name="academy_id" id="academy_id" class="form-control"  style="color: white; background-color: #FF7900;" required >
+                    <option value=""  style="color: white; background-color: #333;">Select a academy</option>
+                    @foreach ($academies as $academy)
+                        <option value="{{ $academy->id }}"
+                            {{ $Student->academy_id == $academy->id ? 'selected' : '' }}
+                            style="color: white; background-color: #333;">
+                            {{ $academy->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+
+
 
             <div class="form-group" >
                 <label for="cohort_id">Cohort</label>
-                <select name="cohort_id" id="cohort_id" class="form-control"  style="color: white; background-color: #2C254A;" required >
+                <select name="cohort_id" id="cohort_id" class="form-control"  style="color: white; background-color: #FF7900;" required >
                     <option value=""  style="color: white; background-color: #333;">Select a cohort</option>
                     @foreach ($Cohorts as $cohort)
                         <option value="{{ $cohort->id }}"
@@ -49,17 +66,17 @@
 
 
             <div class="form-group">
-                <label for="job_title">Job Title:</label>
-                <input type="text" name="job_title" id="job_title" class="form-control" value="{{ $Student->job_title }}" required>
-                @error('job_title')
+                <label for="employment_status">Employment Status:</label>
+                <input type="text" name="employment_status" id="employment_status" class="form-control" value="{{ $Student->employment_status }}" required>
+                @error('employment_status')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
             </div>
 
             <div class="form-group">
-                <label for="company_name">Company Name:</label>
-                <input type="text" name="company_name" id="company_name" class="form-control" value="{{ $Student->company_name }}" required>
-                @error('company_name')
+                <label for="linkedin">linkedin:</label>
+                <input type="text" name="linkedin" id="linkedin" class="form-control" value="{{ $Student->linkedin }}" required>
+                @error('linkedin')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
             </div>

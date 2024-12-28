@@ -16,19 +16,31 @@
             <form action="{{ route('student.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <!-- Name Input -->
+                <div class="form-group mb-3">
+                    <label for="academy_id" class="form-label">Academy:</label>
+                    <select name="academy_id" id="academy_id" class="form-control" style="color: white; background-color: #FF7900;" required>
+                        <option value="" style="color: white; background-color: #333;">Select an academy</option>
+                        @foreach ($academies as $academy)
+                            <option value="{{ $academy->id }}" {{ old('academy_id') == $academy->id ? 'selected' : '' }}>
+                                {{ $academy->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Cohort Select -->
                 <div class="form-group mb-3">
                     <label for="cohort_id" class="form-label">Cohort:</label>
-                    <select name="cohort_id" id="cohort_id" class="form-control" style="color: white; background-color: #2C254A;" required>
-                        <option value=""  style="color: white; background-color: #333;">Select a cohort</option>
-                        @foreach ($Cohorts as $cohort)
-                            <option value="{{ $cohort->id }}"
-                                {{ old('cohort_id') == $cohort->id ? 'selected' : '' }}>
+                    <select name="cohort_id" id="cohort_id" class="form-control" style="color: white; background-color: #FF7900;" required>
+                        <option value="" style="color: white; background-color: #333;">Select a cohort</option>
+                        @foreach ($cohorts as $cohort)
+                            <option value="{{ $cohort->id }}" {{ old('cohort_id') == $cohort->id ? 'selected' : '' }}>
                                 {{ $cohort->name }}
                             </option>
                         @endforeach
                     </select>
                 </div>
+
 
                 <!-- Email Input -->
                 <div class="form-group mb-3">
@@ -50,18 +62,18 @@
 
 
                 <div class="form-group mb-3">
-                    <label for="job_title" class="form-label">Job Title:</label>
-                    <input type="text" name="job_title" id="job_title" class="form-control" value="{{ old('job_title') }}" required>
-                     @error('job_title')
+                    <label for="employment_status" class="form-label">Employment Status:</label>
+                    <input type="text" name="employment_status" id="employment_status" class="form-control" value="{{ old('employment_status') }}" required>
+                     @error('employment_status')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
                 </div>
 
 
                 <div class="form-group mb-3">
-                    <label for="company_name" class="form-label">Company Name:</label>
-                    <input type="text" name="company_name" id="company_name" class="form-control" value="{{ old('company_name') }}" required>
-                     @error('company_name')
+                    <label for="linkedin" class="form-label">linkedin:</label>
+                    <input type="text" name="linkedin" id="linkedin" class="form-control" value="{{ old('linkedin') }}" required>
+                     @error('linkedin')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
                 </div>
@@ -77,13 +89,35 @@
 
                 <div class="d-flex justify-content-between">
                     <a href="{{ route('students') }}" class="btn btn-secondary">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Add Student</button>
+                    <button type="submit" class="btn btn-success text-white">Add Student</button>
                 </div>
             </form>
     </div>
         </div>
 
         @include('dashboard.layout.footer')
+
+        <script>
+            document.getElementById('academy_id').addEventListener('change', function() {
+                var academyId = this.value;
+                var cohortSelect = document.getElementById('cohort_id');
+
+                cohortSelect.innerHTML = '<option value="" style="color: white; background-color: #333;">Select a cohort</option>';
+
+                if (academyId) {
+                    fetch(`/cohorts/${academyId}`)
+                        .then(response => response.json())
+                        .then(cohorts => {
+                            cohorts.forEach(cohort => {
+                                var option = document.createElement('option');
+                                option.value = cohort.id;
+                                option.textContent = cohort.name;
+                                cohortSelect.appendChild(option);
+                            });
+                        });
+                }
+            });
+        </script>
         @endsection
         {{-- </div> --}}
 {{-- </body>

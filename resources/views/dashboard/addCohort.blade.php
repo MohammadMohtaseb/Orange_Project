@@ -28,7 +28,7 @@
 
                 <div class="form-group mb-3">
                     <label for="academy_id" class="form-label">Academy:</label>
-                    <select name="academy_id" id="academy_id" class="form-control" style="color: white; background-color: #2C254A;" required>
+                    <select name="academy_id" id="academy_id" class="form-control" style="color: white; background-color: #FF7900;" required>
                         <option value=""  style="color: white; background-color: #333;">Select a Academy</option>
                         @foreach ($Academy as $Academies)
                             <option value="{{ $Academies->id }}"
@@ -40,6 +40,23 @@
                 </div>
 
 
+                <div class="form-group mb-3">
+                    <label for="years" class="form-label">Years:</label>
+                    <input type="text" name="years" id="years" class="form-control" value="{{ old('years') }}" required>
+                     @error('years')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+                </div>
+
+
+
+                <div class="form-group mb-3">
+                    <label for="picture" class="form-label">Picture:</label>
+                    <input type="file" name="picture" id="picture" class="form-control" required>
+                    @error('picture')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
 
                 <div class="d-flex justify-content-between">
                     <a href="{{ route('cohorts') }}" class="btn btn-secondary">Cancel</a>

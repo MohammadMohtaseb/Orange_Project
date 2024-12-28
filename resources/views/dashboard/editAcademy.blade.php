@@ -25,6 +25,16 @@
                     @enderror
                 </div>
 
+
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input type="text" name="description" id="description" class="form-control" value="{{ old('description', $academy->description) }}" required>
+                    @error('description')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
                 <div class="form-group">
                     <label for="picture">Picture:</label>
                     <input type="file" name="picture" id="picture" class="form-control">

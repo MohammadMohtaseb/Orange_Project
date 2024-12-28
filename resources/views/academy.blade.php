@@ -11,14 +11,15 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
-  <title>Document</title>
+
+  <title>Academies</title>
 </head>
 
 <body>
   @extends('layout-front.header')
 
   <div class="main-image">
-    <img src=" {{ asset('assets/images/BANNER-TEST-S2_1.jpg') }} "alt="صورة خلفية">
+    <img src="https://www.linkedin.com/in/bara-abusaleem-b38a96201"alt="صورة خلفية">
     <div class="overlay">
       <h1>Take student experience to the next level</h1>
     </div>
@@ -26,88 +27,24 @@
 
   <nav class="breadcrumbs">
     <a href="{{ route('watch.home') }}">Home</a> &gt;
-    <!-- <a href="tasks.html">Tasks</a> &gt; -->
-    <span>Task 1</span>
+    <a href="{{ route('watch.academies') }}"><span>Academies</span></a>
+
   </nav>
 
   <div class="maen-container">
+
     @foreach ($academies as $academy)
     <div class="content-container">
-      <div class="content-image"><img src=" {{ asset('assets/images/(1).png') }}  " alt="صورة">
-      </div>
+      <div class="content-image"><img src=" {{ asset('storage/' . $academy->picture) }} " alt="صورة"></div>
       <div class="content-text">
-        <h2>{{$academy->name}}</h2>
-        <p>In addition to decreasing material costs, clever engineering tricks are pushing the efficiency of silicon
-          solar
-          cells closer to their theoretical maximum.
-          In order for photons to be converted into energy, they must first collide with an electron.</p>
-        <button class="action-button">Show More</button>
-      </div>
+        <h2>{{ $academy->name }}</h2>
+        <p>{{ $academy->description }}</p>
+          <a href="{{ route('academy.showCohorts', $academy->id) }}" class="action-button" style=" text-decoration: none;">Show Cohorts</a>
+        </div>
     </div>
     @endforeach
 
-    <div class="content-container">
-      <div class="content-image"><img src=" {{ asset('assets/images/(2).png') }}  " alt="صورة">
-      </div>
-      <div class="content-text">
-        <h2>Balqa Academy </h2>
-        <p>In addition to decreasing material costs, clever engineering tricks are pushing the efficiency of silicon
-          solar
-          cells closer to their theoretical maximum.
-          In order for photons to be converted into energy, they must first collide with an electron.</p>
-        <button class="action-button">Show More</button>
-      </div>
-    </div>
-    <div class="content-container">
-      <div class="content-image"><img src=" {{ asset('assets/images/(3).png') }}  "alt="صورة">
-      </div>
-      <div class="content-text">
-        <h2>Amman Academy </h2>
-        <p>In addition to decreasing material costs, clever engineering tricks are pushing the efficiency of silicon
-          solar
-          cells closer to their theoretical maximum.
-          In order for photons to be converted into energy, they must first collide with an electron.</p>
-        <button class="action-button">Show More</button>
-      </div>
-    </div>
 
-    <div class="content-container">
-      <div class="content-image"><img src=" {{ asset('assets/images/(4).png') }}  " alt="صورة">
-      </div>
-      <div class="content-text">
-        <h2>Amman Academy </h2>
-        <p>In addition to decreasing material costs, clever engineering tricks are pushing the efficiency of silicon
-          solar
-          cells closer to their theoretical maximum.
-          In order for photons to be converted into energy, they must first collide with an electron.</p>
-        <button class="action-button">Show More</button>
-      </div>
-    </div>
-    <div class="content-container">
-      <div class="content-image"><img src=" {{ asset('assets/images/(5).png') }}  " alt="صورة">
-      </div>
-      <div class="content-text">
-        <h2>Amman Academy </h2>
-        <p>In addition to decreasing material costs, clever engineering tricks are pushing the efficiency of silicon
-          solar
-          cells closer to their theoretical maximum.
-          In order for photons to be converted into energy, they must first collide with an electron.</p>
-        <button class="action-button">Show More</button>
-      </div>
-    </div>
-
-    <div class="content-container">
-      <div class="content-image"><img src=" {{ asset('assets/images/(5).png') }}  " alt="صورة">
-      </div>
-      <div class="content-text">
-        <h2>Amman Academy </h2>
-        <p>In addition to decreasing material costs, clever engineering tricks are pushing the efficiency of silicon
-          solar
-          cells closer to their theoretical maximum.
-          In order for photons to be converted into energy, they must first collide with an electron.</p>
-        <button class="action-button">Show More</button>
-      </div>
-    </div>
 
     <div class="about-us-container">
       <h1 class="about-title">About Us</h1>
@@ -153,7 +90,9 @@
 
 
   </div>
-  <script src="{{ asset('/assets/js/script.js') }}"></script>
+  {{-- @section('js') --}}
+  <script src="{{ asset('assets/js/script.js') }}"></script>
+  {{-- @endsection --}}
 </body>
 
 </html>
