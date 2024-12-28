@@ -10,17 +10,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
 @endsection
 </head>
 <body>
 <header>
+    <div class="nav-overlay"></div> 
     <nav class="navbar">
         <div class="logo">
             <img src="{{ asset('assets/images/orange-logo.svg') }}" alt="Orange Logo">
         </div>
         <div class="nav-links">
-            <a href="{{ route('watch.home') }}" class="active">Home</a>
-            <a href="{{ route('watch.academies') }}">Academy</a>
+            <a href="{{ route('home') }}" class="active">Home</a>
+            <a href="{{ route('academy') }}">Academy</a>
             <a href="#how-it-works">How It Works?</a>
             <a style="padding: .5rem 1.6rem .5rem .5rem;" href="#support">Support</a>
             <div class="search-box">
@@ -32,7 +34,7 @@
                     </svg>
                 </div>
             </div>
-
+            
             <a href="#" class="login-btn">Login</a>
         </div>
         <button class="burger-menu" aria-label="Toggle menu">
@@ -42,6 +44,8 @@
         </button>
     </nav>
 </header>
-<script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="{{ asset('assets/js/menu.js') }}"></script>
+<script src="{{ asset('assets/js/script.js') }}">
+</script>
 </body>
 </html>

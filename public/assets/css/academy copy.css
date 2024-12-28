@@ -1,0 +1,565 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #333;
+
+}
+.main-image {
+  position: relative;
+  width: 100%;
+  height: 50vh; /* يمكنك تعديل الارتفاع حسب الحاجة */
+  overflow: hidden;
+  margin-bottom: 6vh;
+  margin-top: 96px;
+}
+
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(4px); /* تطبيق تأثير التمويه */
+}
+
+.main-image .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* اللون الأسود بشفافية 50% */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-image .overlay h1 {
+  color: #fff; /* لون النص */
+  font-size: 40px; /* حجم النص */
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  font-family: "Libre Franklin", serif;
+  /* transform: translateY(47px); */
+}
+
+.maen-container {
+   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5vw;
+  /* padding: 20px; */
+  width: 90vw; 
+  flex-wrap: wrap; /* للسماح بالتفاف العناصر */
+  justify-content: center;
+  margin: 9vh 5vw 0vw 5vw;
+}
+
+.breadcrumbs {
+  text-decoration: underline;
+  text-underline-offset: 14px; /* التحكم في المسافة بين النص والخط */
+  text-decoration-thickness: 1.5px; /* التحكم في سمك الخط */  
+  font-family: "Mulish", serif;
+  font-size: 24px;
+  font-weight:400 ;
+  color: #667085;
+  margin-left: 4vw;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: #667085;
+  
+}
+
+.breadcrumbs span {
+  color: #FF7900;
+  transition: color 0.3s ease;
+}
+
+.breadcrumbs span:hover {
+  color: #ff8d2a;
+}
+
+
+.content-container {
+
+/*   display: flex;
+gap: 20px;
+align-items: center;
+justify-content: center;
+padding: 20px; */
+
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  
+  padding: 20px;
+  max-width: 38vw;
+  flex-direction: row;
+  justify-content: center;
+  
+  border: solid 3px #FF7900;
+  border-radius: 24px;
+  /* height: 47vh; */
+  gap: 1.875vw;
+}
+
+.content-image {
+  /* width: 20vw; 
+  height: 47vh;*/
+  object-fit: fill;
+  display: block;
+  /* background-color: #ff8d2a; */
+  margin-left: 20px;
+}
+.content-image >img {
+   width: 15vw; 
+  height: 22vw;
+}
+
+.content-text {
+  flex: 1;
+text-align: left;
+}
+
+.content-text h2 {
+  margin: 0 0 10px;
+  font-size: 32px;
+  color: #FF7900;
+  font-family: "Nunito Sans", serif;
+  font-weight: 600;
+}
+
+.content-text p {
+  margin: 0 0 15px;
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #8D98AA;
+  font-family: "Inter", serif;
+}
+
+.action-button {
+  display: inline-block;
+  padding: .5rem 1.8rem;
+  background-color: #FF7900;
+  color: #fff;
+  border: none;
+  border-radius: 500px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Nunito Sans", serif;
+  float: right;
+  box-shadow:0 6px 17px rgb(84, 90, 232 ,0.25);
+}
+
+.action-button:hover {
+  background-color: #ff8d2a;
+  transition: all 0.3s ease; /* إضافة تأثير انتقال ناعم */
+}
+/* 2222222222222222222222222222222222222222222222222222222222222222222222222222222222222 */
+.about-us-container {
+  text-align: center;
+  padding: 20px;
+  width: 86.5vw;
+  margin: 0 auto;
+  font-family: "Poppins", serif;
+  margin-bottom: 5vw;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #1E1E1E;
+  
+}
+
+.about-description {
+  font-size: 1.2rem;
+  color: #1E1E1E80;
+  margin-bottom: 30px;
+}
+
+.about-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  
+  border-radius: 10px;
+  
+  text-align: center;
+  max-width: 26vw;
+  
+}
+
+.image-circle {
+  width: 100px;
+  height: 100px;
+  background-color: #FF7900;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-circle img {
+  width: 100%;
+  height: auto;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.card-description {
+  font-size: 18px;
+  color: #1E1E1E80;
+  font-weight: 500;
+}
+
+
+
+/* 55555555555555555555555555555555555555555555555555555555555555555555 */
+
+.navbar {
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+     padding: 0rem 5%; 
+    background-color:white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 90%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 96px;
+    transition: opacity 1s ease, visibility 1s ease;
+    opacity: 1; /* افتراضيًا الهيدر يظهر */
+    visibility: visible; /* الهيدر يكون مرئي */}
+    
+.navbar .login-btn {
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative; /* يسمح بتجنب تأثير التلاشي */
+    z-index: 1100; /* أعلى من navbar */
+    padding: 12px 3.5rem !important;
+}
+.navbar.hidden {
+    opacity: 0; /* الهيدر يصبح شفاف */
+    visibility: hidden; /* الهيدر يختفي */
+}
+
+
+
+
+.logo img {
+    height: 80px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 48px;
+}
+ 
+.nav-links a:hover {
+    color: #FF6B00;
+/*     background: rgba(255, 107, 0, 0.1);
+ */}
+
+.nav-links a.active {
+/*     color: #FF6B00;
+    background: rgba(255, 107, 0, 0.1);
+ */}
+
+ /* .search-box {
+    position: relative;
+    width: 200px;
+} */
+
+/* إخفاء input افتراضيًا */
+.search-box input {
+    padding: 0.7rem 2.5rem 0.7rem 1rem;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    width: 200px;
+    transition: all 0.3s ease;
+
+    display: none;
+    /* width: 100%;
+    padding: 5px;
+    box-sizing: border-box; */
+}
+.search-icon.hidden {
+    display: none; /* لإخفاء الأيقونة */
+}
+
+/* زر SVG */
+.search-box svg {
+    cursor: pointer; /* لجعل المؤشر يتغير عند التمرير */
+     margin-top: 0px 100px; 
+}
+
+/* إظهار input عند إضافة الكلاس */
+.search-box input.show {
+    display: block;
+    justify-content: end;
+    align-items: end;
+}
+.search-icon.hidden {
+    display: none; /* لإخفاء الأيقونة */
+}
+
+/* Search Box */
+ .search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    justify-content: center; 
+    /* width: 200px; */
+
+
+} 
+
+
+/*
+.search-box input {
+    padding: 0.7rem 2.5rem 0.7rem 1rem;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    width: 200px;
+    transition: all 0.3s ease;
+}*/
+
+.search-box input:focus {
+    border-color: #FF6B00;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+}
+
+.search-box .fa-search {
+    position: absolute;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.search-box:hover .fa-search,
+.search-box input:focus + .fa-search {
+    color: #FF6B00;
+}
+.Sicon:hover path {
+    stroke: #FF6B00; /* تغيير لون الحدود إلى اللون البرتقالي */
+    transition: stroke 0.3s ease; /* إضافة تأثير انتقال ناعم */
+}
+.Sicon {
+
+  display: flex;
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 18px;
+  font-size: 16px;;
+  
+  
+}
+
+/* Login Button */
+.login-btn {
+  background: #FF6B00; /* اللون البرتقالي */
+  color: #FFFFFF !important; /* اللون الأبيض */
+  padding: 0.5rem 3.5rem !important;
+  border-radius: 5px;
+  transition: all 0.3s ease !important;
+  font-weight: 400 !important;
+  text-align: center;
+  font-size: 18px;
+}
+
+.login-btn:hover {
+    background: #ff8533 !important;
+    /* transform: translateY(-2px); */
+    box-shadow: 0 4px 10px rgba(255, 107, 0, 0.1);
+}
+
+/* Burger Menu */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    background: transparent;
+    border: none;
+    z-index: 1001;
+}
+
+.burger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #FF6B00;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+/*   6666666666666666666666666666666666666666666666666666666666666666666666666 */
+
+/* Footer */
+footer {
+background: #FF7900;
+color: #fff;
+padding: 4rem 5% 2rem;
+}
+
+.footer-logo {
+width: 120px;
+margin-bottom: 1rem;
+border: solid 1px #fff;
+}
+
+.footer-content {
+display: flex;
+justify-content: space-between;
+flex-wrap: nowrap;
+margin-bottom: 2rem;
+height: 20vw;
+gap: 1rem;
+}
+
+.footer-section {
+flex-basis: 200px;
+margin-bottom: 2rem;
+display: flex;
+flex-direction: column;
+gap: 1rem;
+align-items: flex-start;
+justify-content: flex-start;
+
+}
+.footer-sectio {
+color: #DADADA;
+margin-bottom: 2rem;
+width:20vw ;
+display: flex;
+flex-direction: column;
+gap: 30px;
+
+}
+
+
+.footer-section h3 {
+margin-bottom: 1rem;
+}
+
+.footer-section ul {
+list-style: none;
+color: #DADADA;
+margin: 0px;
+text-align: left;
+
+float: left;
+direction: rtl;
+
+
+}
+
+.footer-section ul li {
+margin-bottom: 0.5rem;
+color: #DADADA;
+text-align: left;
+}
+
+.footer-section a {
+color: #fff;
+text-decoration: none;
+color: #DADADA;
+text-align: left;
+}
+.footer-section p {
+
+color: #DADADA;
+text-align: left;
+}
+
+.newsletter {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.newsletter .email-input {
+display: flex;
+background: white;
+border-radius: 50px;
+overflow: hidden;
+padding: 3px;
+margin: 25px 5px 5px 5px;
+}
+
+.newsletter .email-input input {
+flex: 1;
+border: none;
+padding: 0.8rem;
+margin: 0;
+}
+
+.newsletter .email-input button {
+background: #FF6B00;
+color: white;
+border: none;
+padding: 0.8rem 1.5rem;
+border-radius: 50px;
+cursor: pointer;
+margin: 0;
+}
+
+.footer-bottom {
+background-color:#F2994B;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0rem 5% 0.5rem;
+color: #ffffff;
+font-size: 16px;
+height: 64px;
+
+
+border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.social-links a {
+
+color: #fff;
+margin-left: 1rem;
+text-decoration: none;
+}

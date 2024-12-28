@@ -34,10 +34,9 @@ Route::controller(DashboardController::class)->group(function () {
     Route::get('/admin-reset-password/{id}', 'admin_reset_password')->name('admin.reset.password');
     Route::any('/admin-update-password', 'admin_update_password')->name('admin.forget.update');
 
-    Route::middleware(['auth','verified','role:admin'])->group(function(){
+    Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
-    Route::get('/dashboard','dashboard')->name('dashboard');
-
+        Route::get('/dashboard', 'dashboard')->name('dashboard');
     });
 });
 
@@ -57,41 +56,41 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('/users/store', [UserController::class, 'store'])->name('user.store');
-Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
-Route::get('/users', [UserController::class, 'index'])->name('users');
-Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
-Route::post('/users/{id}', [UserController::class, 'update'])->name(name: 'user.update');
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('user.delete');
+    Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::post('/users/{id}', [UserController::class, 'update'])->name(name: 'user.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('user.delete');
 
-Route::post('/students/store', [StudentController::class, 'store'])->name('student.store');
-Route::get('/students/create', [StudentController::class, 'create'])->name('student.create');
-Route::get('/students', [StudentController::class, 'index'])->name('students');
-Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
-Route::put('students/{id}', [StudentController::class, 'update'])->name('student.update');
-Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('student.delete');
-Route::get('/students/{id}', [StudentController::class, 'view'])->name('student.view');
-Route::get('/cohorts/{academyId}', [StudentController::class, 'getCohortsByAcademy']);
-// Route for AJAX search
-Route::get('/students/search', [StudentController::class, 'search'])->name('student.search');
-
-
-
-Route::post('/academies/store', [AcademyController::class, 'store'])->name('academy.store');
-Route::get('/academies/create', [AcademyController::class, 'create'])->name('academy.create');
-Route::get('/academies', [AcademyController::class, 'index'])->name('academies');
-Route::get('/academies/{id}/edit', [AcademyController::class, 'edit'])->name('academy.edit');
-Route::delete('/academies/{id}', [AcademyController::class, 'destroy'])->name('academy.delete');
-Route::put('/academies/{academy}', [AcademyController::class, 'update'])->name('academy.update');
-Route::post('/academy/import', [AcademyController::class, 'import'])->name('academy.import');
+    Route::post('/students/store', [StudentController::class, 'store'])->name('student.store');
+    Route::get('/students/create', [StudentController::class, 'create'])->name('student.create');
+    Route::get('/students', [StudentController::class, 'index'])->name('students');
+    Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
+    Route::put('students/{id}', [StudentController::class, 'update'])->name('student.update');
+    Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('student.delete');
+    Route::get('/students/{id}', [StudentController::class, 'view'])->name('student.view');
+    Route::get('/cohorts/{academyId}', [StudentController::class, 'getCohortsByAcademy']);
+    // Route for AJAX search
+    Route::get('/students/search', [StudentController::class, 'search'])->name('student.search');
 
 
 
-Route::post('/Cohorts/store', [CohortController::class, 'store'])->name('cohort.store');
-Route::get('/Cohorts/create', [CohortController::class, 'create'])->name('cohort.create');
-Route::get('/Cohorts', [CohortController::class, 'index'])->name('cohorts');
-Route::get('/Cohorts/{id}/edit', [CohortController::class, 'edit'])->name('cohort.edit');
-Route::put('/Cohorts/{id}', [CohortController::class, 'update'])->name('cohort.update');
-Route::delete('/Cohorts/{id}', [CohortController::class, 'destroy'])->name('cohort.delete');
+    Route::post('/academies/store', [AcademyController::class, 'store'])->name('academy.store');
+    Route::get('/academies/create', [AcademyController::class, 'create'])->name('academy.create');
+    Route::get('/academies', [AcademyController::class, 'index'])->name('academies');
+    Route::get('/academies/{id}/edit', [AcademyController::class, 'edit'])->name('academy.edit');
+    Route::delete('/academies/{id}', [AcademyController::class, 'destroy'])->name('academy.delete');
+    Route::put('/academies/{academy}', [AcademyController::class, 'update'])->name('academy.update');
+    Route::post('/academy/import', [AcademyController::class, 'import'])->name('academy.import');
+
+
+
+    Route::post('/Cohorts/store', [CohortController::class, 'store'])->name('cohort.store');
+    Route::get('/Cohorts/create', [CohortController::class, 'create'])->name('cohort.create');
+    Route::get('/Cohorts', [CohortController::class, 'index'])->name('cohorts');
+    Route::get('/Cohorts/{id}/edit', [CohortController::class, 'edit'])->name('cohort.edit');
+    Route::put('/Cohorts/{id}', [CohortController::class, 'update'])->name('cohort.update');
+    Route::delete('/Cohorts/{id}', [CohortController::class, 'destroy'])->name('cohort.delete');
 });
 
 Route::get('/dashboard', function () {
@@ -122,7 +121,7 @@ Route::get('/show.students', function () {
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 use Illuminate\Support\Facades\Mail;
 
@@ -135,4 +134,6 @@ Route::get('/test-email', function () {
 });
 
 
-
+Route::get('/home', function () {
+    return view('home');
+})->name('home');

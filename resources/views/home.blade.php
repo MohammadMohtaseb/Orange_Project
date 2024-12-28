@@ -121,7 +121,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="Query">Your Query</label>
-                    <input style="line-height: 12ex;" id="Query" placeholder="Your Query"></input>
+                    <textarea style="line-height: 12ex; resize: none;" id="Query"></input>
                 </div>
                     <button type="submit">Join Now</button>
                 </form>
