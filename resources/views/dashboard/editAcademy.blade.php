@@ -36,6 +36,15 @@
 
 
                 <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" name="location" id="location" class="form-control" value="{{ old('location', $academy->location) }}" required>
+                    @error('location')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
+                <div class="form-group">
                     <label for="picture">Picture:</label>
                     <input type="file" name="picture" id="picture" class="form-control">
                     @error('picture')

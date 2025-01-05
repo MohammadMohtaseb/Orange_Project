@@ -21,10 +21,10 @@
             <img src="{{ asset('assets/images/orange-logo.svg') }}" alt="Orange Logo">
         </div>
         <div class="nav-links">
-            <a href="{{ route('home') }}" class="active">Home</a>
+            <a href="{{ route('watch.home') }}" class="active">Home</a>
             <a href="{{ route('watch.academies') }}">Academies</a>
-            <a href="#how-it-works">How It Works?</a>
-            <a style="padding: .5rem 1.6rem .5rem .5rem;" href="#support">Support</a>
+            {{-- <a href="#how-it-works">How It Works?</a> --}}
+            {{-- <a style="padding: .5rem 1.6rem .5rem .5rem;" href="#support">Support</a>
             <div class="search-box">
                 <input type="text" placeholder="Search..." class="search-input">
                 <div class="Sicon">
@@ -33,9 +33,9 @@
                         <path d="M16.5 16.5L15 15" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-            </div>
+            </div> --}}
 
-            <a href="#" class="login-btn">Login</a>
+            <a href="{{route('login')}}" class="login-btn">Login</a>
         </div>
         <button class="burger-menu" aria-label="Toggle menu">
             <span></span>

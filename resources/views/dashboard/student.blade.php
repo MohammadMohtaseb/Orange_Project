@@ -35,7 +35,7 @@
                         <td>{{ $student->cohort->name }}</td>
                         <td>{{ $student->name }}</td>
                         <td>
-                            <img src="{{ asset('storage/' . $student->picture) }}" alt="Student Picture" width="100">
+                            <img src="{{$student->picture}}" alt="Student Picture" width="100">
                         </td>
                         <td>
                             <a href="{{ route('student.view', $student->id) }}" class="btn btn-info btn-sm" >

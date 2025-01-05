@@ -3,6 +3,8 @@
 
 namespace App\Http\Controllers;
 use App\Imports\StudentImport;
+use App\Models\Cohort;
+use App\Models\Student;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Academy;
 use Illuminate\Http\Request;
@@ -30,6 +32,7 @@ class AcademyController extends Controller
         'name' => 'required|string|max:255',
         'description' => 'required|string|max:255',
         'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'location' => 'string|max:255',
     ]);
 
 
@@ -58,6 +61,8 @@ class AcademyController extends Controller
             'name' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:255',
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'location' => 'string|max:255',
+
         ]);
 
         $data = [];
@@ -68,6 +73,9 @@ class AcademyController extends Controller
         }
         if ($request->filled('description')) {
             $data['description'] = $request->description;
+        }
+        if ($request->filled('location')) {
+            $data['location'] = $request->location;
         }
         // Update picture if a new one is uploaded
         if ($request->hasFile('picture')) {
@@ -94,7 +102,23 @@ class AcademyController extends Controller
         return redirect()->route('academies');
     }
 
-    public function import(Request $request)
+    public function convertDriveLinkToThumbnailUrl($driveLink) {
+        // Regular expression to extract the file ID from the Google Drive URL
+        if (preg_match('/https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)\/view/', $driveLink)) {
+        preg_match('/https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)\/view/', $driveLink, $matches);
+
+        // Check if the match was successful
+        if (isset($matches[1])) {
+            $fileId = $matches[1];
+            // Construct the thumbnail URL
+            return "https://drive.google.com/thumbnail?id=" . $fileId;
+        } else {
+            return $driveLink; // Return the original URL if it's not in the expected format
+        }
+    }
+    }
+
+    public function import($academy_id, Request $request)
     {
         // Validate the file type
         $request->validate([
@@ -105,52 +129,32 @@ class AcademyController extends Controller
         $spreadsheet = IOFactory::load($request->file('file'));
 
         // Get the first sheet
-        $sheet = $spreadsheet->getActiveSheet();
-
-        // Extract data and images
-        $images = [];
-        $imageIndex = 0; // To keep track of which image to associate with each row
-        foreach ($sheet->getDrawingCollection() as $drawing) {
-            if ($drawing instanceof Drawing) {
-                // Get the image path (it could be a URL or path)
-                $imagePath = $drawing->getPath();
-
-                // You can also check for the image type and move it accordingly
-                $ext = pathinfo($imagePath, PATHINFO_EXTENSION); // For file extension
-
-                // Create a new file name for the image if necessary
-                $newImageName = uniqid() . '.' . $ext;
-
-                // Move the image from the original location to your public directory
-                $imageDestination = public_path('excel/' . $newImageName);
-                copy($imagePath, $imageDestination);
-
-                // Store image path in an array
-                $images[] = $imageDestination;
-            }
-        }
+        $sheet = $spreadsheet->getSheetByName('data science');
 
         // Now, you can store other data like text/numbers from the sheet
         $data = $sheet->toArray();
 
-        // Loop through the data and insert into the database, associating images with rows
+        // Loop through the data and insert into the database
         foreach ($data as $index => $row) {
-            // Check if there is an image for this row
-            $imagePath = isset($images[$index]) ? $images[$index] : null;
-
+            if ($index =! 0 && !Student::where('email', $row[0])->exists() && $row[0] != Null) {
             // Example: Assuming you have a model called "Item" for a table
-            \App\Models\Student::create([
-                'name' => $row[0], // Assuming name is in the first column
-                // 'description' => $row[1], // Assuming description is in the second column
-                // 'price' => $row[2], // Assuming price is in the third column
-                'image_path' => $imagePath, // Associate the image path for this row
-                'cohort_id' => 1,
-                'email' => $row[0] . '@gmail.com',
+            Student::create([
+                'name' => $row[1] .' '. $row[2], // Assuming name is in the first column
+                'academy_id' => $academy_id,
+                'email' => $row[0],
+                // 'cohort_id' => Cohort::where('name', 'Cohrt ' . $row[0])->where('academy_id', 11)->first()->id,
+                // 'cohort_id' => (int)$row[0] + 3,
+                'cohort_id' => Cohort::where('academy_id', $academy_id)->where('name', 'Cohrt' . $row[6])->first()->id,
+                'linkedin' => $row[5], // Assuming price is in the third column
+                'picture' => $this->convertDriveLinkToThumbnailUrl($row[4]),
+                'employment_status' => $row[3],
                 // Add any other columns as needed
             ]);
         }
+        }
 
         // Return response
-        return back()->with('success', 'File imported successfully with images.');
+        return back()->with('success', 'File imported successfully.');
     }
+
 }

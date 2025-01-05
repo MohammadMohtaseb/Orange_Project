@@ -15,6 +15,7 @@ protected $fillable = [
     'description',
     // 'governate',
     'picture', // Add this
+    'location',
 ];
 
 

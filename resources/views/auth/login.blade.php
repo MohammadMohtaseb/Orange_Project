@@ -55,9 +55,9 @@
                 <div class="col-xl-12">
                     <div class="auth-form">
                         <div class="text-center mb-3">
-                            <img src="{{ asset('images/logo-full.png') }}" alt="">
+                            <img width="120" src="{{ asset('images/logo-full.png') }}" alt="">
                         </div>
-                        <h4 class="text-center mb-4">Sign in your account</h4>
+                        <h4 class="text-center mb-4">!You can sign in only if you are an admin</h4>
                         @if(Session::has('msg'))
                             <p class="text-danger text-center">{{Session::get('msg')}}</p>
                         @endif

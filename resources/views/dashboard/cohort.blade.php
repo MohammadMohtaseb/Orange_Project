@@ -26,7 +26,7 @@
                 </a>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-striped" style="color: white">
+                <table class="table  table-striped" style="color: white">
                     <thead>
                         <tr>
                             <th>ID</th>

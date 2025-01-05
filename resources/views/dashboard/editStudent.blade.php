@@ -74,8 +74,24 @@
             </div>
 
             <div class="form-group">
+                <label for="job_title">Job Title:</label>
+                <input type="text" name="job_title" id="job_title" class="form-control" value="{{ $Student->job_title }}" >
+                @error('job_title')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="company">Company Name:</label>
+                <input type="text" name="company" id="company" class="form-control" value="{{ $Student->company }}" >
+                @error('company')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+            </div>
+
+            <div class="form-group">
                 <label for="linkedin">linkedin:</label>
-                <input type="text" name="linkedin" id="linkedin" class="form-control" value="{{ $Student->linkedin }}" required>
+                <input type="text" name="linkedin" id="linkedin" class="form-control" value="{{ $Student->linkedin }}" >
                 @error('linkedin')
                 <span class="text-danger">{{ $message }}</span>
             @enderror

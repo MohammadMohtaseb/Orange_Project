@@ -19,7 +19,7 @@
             </li>
         </ul>
         <div class="copyright">
-            <p><strong>Zenix Crypto Admin Dashboard</strong> © 2021 All Rights Reserved</p>
+            <p><strong>Orange Coding Academy Admin Dashboard</strong> © 2024 All Rights Reserved</p>
         </div>
     </div>
 </div>

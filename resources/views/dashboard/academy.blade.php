@@ -27,12 +27,13 @@
                 </a>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-striped" style="color: white">
+                <table class="table table-striped" style="color: white">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Location</th>
                             <th>Picture</th>
                             <th>Actions</th>
                         </tr>
@@ -43,6 +44,7 @@
                                 <td>{{ $academy->id }}</td>
                                 <td>{{ $academy->name }}</td>
                                 <td>{{ $academy->description }}</td>
+                                <td><a href="{{$academy->location}}">{{ $academy->location }}</a></td>
                                 <td>
                                     <img src="{{ asset('storage/' . $academy->picture) }}" alt="Academy Picture" width="100">
                                 </td>

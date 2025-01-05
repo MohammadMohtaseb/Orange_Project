@@ -62,6 +62,24 @@
 
 
                 <div class="form-group mb-3">
+                    <label for="job_title" class="form-label">Job Title:</label>
+                    <input type="text" name="job_ittle" id="job_ittle" class="form-control" value="{{ old('job_ittle') }}" required>
+                     @error('employment_status')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+                </div>
+
+
+                <div class="form-group mb-3">
+                    <label for="company" class="form-label">Copmany Name:</label>
+                    <input type="text" name="company" id="company" class="form-control" value="{{ old('company') }}" required>
+                     @error('employment_status')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+                </div>
+
+
+                <div class="form-group mb-3">
                     <label for="employment_status" class="form-label">Employment Status:</label>
                     <input type="text" name="employment_status" id="employment_status" class="form-control" value="{{ old('employment_status') }}" required>
                      @error('employment_status')

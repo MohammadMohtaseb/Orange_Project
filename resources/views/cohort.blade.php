@@ -55,7 +55,7 @@
                     @foreach ($cohorts as $cohort)
                     <div class="cardC">
                         <div class="card-image">
-                            <img src=" {{ asset($cohort->picture) }} " alt="صورة">
+                            <img src=" {{ asset('storage/' .$cohort->picture) }} " alt="صورة">
                         </div>
                         <div class="card-content">
                             <h2>Champions of Achievement:{{ $cohort->name }}</h2>

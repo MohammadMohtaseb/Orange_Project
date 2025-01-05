@@ -17,7 +17,9 @@ class Student extends Model
         'academy_id',
         'employment_status',
         'linkedin',
-        'picture'
+        'picture',
+        'job_title',
+        'company',
     ];
 
     /**

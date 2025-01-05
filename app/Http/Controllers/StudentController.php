@@ -48,6 +48,8 @@ public function getCohortsByAcademy($academyId)
             'employment_status' => 'nullable|string',
             'linkedin' => 'nullable|string',
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // validate image
+            'job_title' => '',
+            'company' => '',
         ]);
 
         // Store the image path if it's provided
@@ -65,6 +67,8 @@ public function getCohortsByAcademy($academyId)
             'employment_status' => $request->employment_status,
             'linkedin' => $request->linkedin,
             'picture' => $imagePath,  // Store the image path in the database
+            'job_title' => $request->job_title,
+            'company' => $request->company,
         ]);
 
         return redirect()->route('students')->with('success', 'Student created successfully.');
@@ -93,6 +97,8 @@ public function update(Request $request, $id)
         'employment_status' => 'nullable|string',
         'linkedin' => 'nullable|string',
         'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'job_title' => '',
+        'company' => '',
     ]);
 
     $student = Student::findOrFail($id);
@@ -112,6 +118,8 @@ public function update(Request $request, $id)
     $student->academy_id = $request->academy_id;
     $student->employment_status = $request->employment_status;
     $student->linkedin = $request->linkedin;
+    $student->job_title = $request->job_title;
+    $student->company = $request->company;
 
     $student->save();
 

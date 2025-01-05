@@ -35,10 +35,16 @@
 
     @foreach ($academies as $academy)
     <div class="content-container">
-      <div class="content-image"><img src=" {{ asset($academy->picture) }} " alt="صورة"></div>
+      <div class="content-image"><img src=" {{ asset('storage/' .$academy->picture) }} " alt="صورة"></div>
       <div class="content-text">
         <h2>{{ $academy->name }}</h2>
         <p>{{ $academy->description }}</p>
+        @if ($academy->location)
+        <P>
+            <a style="color: orange" href="{{$academy->location}}">Show location >></a>
+        </P>
+        @endif
+
           <a href="{{ route('academy.showCohorts', $academy->id) }}" class="action-button" style=" text-decoration: none;">Show Cohorts</a>
         </div>
     </div>

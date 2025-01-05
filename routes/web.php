@@ -81,7 +81,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/academies/{id}/edit', [AcademyController::class, 'edit'])->name('academy.edit');
     Route::delete('/academies/{id}', [AcademyController::class, 'destroy'])->name('academy.delete');
     Route::put('/academies/{academy}', [AcademyController::class, 'update'])->name('academy.update');
-    Route::post('/academy/import', [AcademyController::class, 'import'])->name('academy.import');
+    Route::post('/academy/import/{$academy_id}}', [AcademyController::class, 'import'])->name('academy.import');
 
 
 

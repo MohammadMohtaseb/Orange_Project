@@ -8,7 +8,7 @@
                 <div class="col-xl-12">
                     <div class="auth-form">
                         <div class="text-center mb-3">
-                            <img src="{{ asset('images/logo-full.png') }}" alt="">
+                            <img width="120" src="{{ asset('images/logo-full.png') }}" alt="">
                         </div>
                         <h4 class="text-center mb-4">Forget Password</h4>
                         @if(Session::has('msg'))

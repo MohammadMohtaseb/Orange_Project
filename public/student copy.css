@@ -1,4 +1,4 @@
-/* General Reset */
+General Reset
 * {
     margin: 0;
     padding: 0;
@@ -130,7 +130,7 @@ body {
 }
 
 .highlight-section p {
-    /* font-size: 32px; */
+    font-size: 32px;
     font-weight: 400;
     color: #000;
 }
@@ -159,8 +159,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 563px;
-    /* height: 848px; */
-    width: 35%;
+    height: 848px;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
     display: flex;
@@ -200,7 +199,7 @@ body {
 
 .cardS h2 {
     padding: 20px;
-    /* font-size: 62px; */
+    font-size: 62px;
     font-weight: 700;
 }
 
@@ -211,7 +210,7 @@ body {
 }
 
 .card-body p {
-    /* font-size: 32px; */
+    font-size: 32px;
     color: #333;
     margin-bottom: 10px;
 }
@@ -312,7 +311,7 @@ body {
     }
 
     .card-body p {
-        /* font-size: 16px; */
+        font-size: 16px;
     }
 
     .heads h1 {
@@ -330,7 +329,7 @@ body {
         padding: 0px 0px;
         text-align: center;
 
-        /* font-size: 1.8rem; */
+        font-size: 1.8rem;
     }
     .pagination {
         display: flex;

@@ -34,7 +34,7 @@
 
             <!-- Text Section -->
             <div class="highlight-section">
-                <p>
+                <h1>
                     Meet our top graduates from
                     <span class="highlighted-text">Orange Coding Academy</span>,
                     showcasing exceptional talent and innovative skills that set them apart in the tech industry.
@@ -49,13 +49,17 @@
                     <div class="card-header">
                     </div>
                     <br>
-                    <img class="avatar" src=" {{ asset('storage/' . $student->picture) }}" alt="Jackie Chui">
+                    <img class="avatar" src="{{$student->picture}}" alt="Jackie Chui">
                     <br>
                     <br>
                     <h2>{{ $student->name }}</h2>
                     <div class="card-body">
                         <p><strong>linkedin:</strong> </p> <a href="{{ $student->linkedin }}" style="text-decoration: none" target="_blank"><p>linkedin link</p></a>
-                        <p><strong>Employment Status:</strong></p> <p> {{ $student->employment_status }}</p>
+                        <p><strong>Employment Status:</strong></p> <p>
+                            {{ $student->employment_status }}
+                        {{$student->job_title ? 'as ' . $student->job_title : ''}}
+                        {{$student->company ? 'at ' . $student->company : ''}}
+                        </p>
                     </div>
                 </div>
                 @endforeach

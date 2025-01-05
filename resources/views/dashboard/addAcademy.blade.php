@@ -34,6 +34,13 @@
             @enderror
                 </div>
 
+                <div class="form-group mb-3">
+                    <label for="location" class="form-label">Location:</label>
+                    <input type="location" name="location" id="location" class="form-control" value="{{ old('location') }}" required>
+                     @error('location')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+                </div>
 
                 <div class="form-group mb-3">
                     <label for="picture" class="form-label">Picture:</label>
