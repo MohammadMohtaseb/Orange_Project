@@ -13,7 +13,7 @@
 @section('content')
     <div class="content-body" >
         <div class="container-fluid">
-            <h2>Add User</h2>
+            <h2>Add Admin</h2>
             <form action="{{ route('user.store') }}" method="POST">
                 @csrf
 

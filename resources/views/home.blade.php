@@ -144,7 +144,7 @@
             <div class="support-form">
                 <h2>Need Support</h2>
                 <p>Contact professionals for guidance</p>
-                <form style="display: flex; align-items: center;">
+                <form style="display: flex; align-items: center;" onclick="redirectToMailto()">
                 <div class="input-wrapper">
                     <label for="full-name">Your Name</label>
                     <input type="text" id="full-name" placeholder="Enter your full name">
@@ -161,7 +161,7 @@
                     <label for="Query">Your Query</label>
                     <textarea style="line-height: 12ex; resize: none;" id="Query"></textarea>
                 </div>
-                    <button type="submit">Send through Gmail</button>
+                    <button type="submit" >Send through Gmail</button>
                 </form>
             </div>
         </div>
@@ -172,6 +172,31 @@
 
        {{--  @section('js') --}}
         <script src="{{ asset('assets/js/script.js') }}"></script>
+        <script>
+            function redirectToMailto(event) {
+                event.preventDefault(); // Prevent the form from submitting traditionally
+
+                // Get the values from the form fields
+                const name = document.getElementById("full-name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const phone = document.getElementById("telephone").value.trim();
+                const query = document.getElementById("Query").value.trim();
+
+                // Validate the fields (optional, for debugging issues)
+                if (!name || !email || !phone || !query) {
+                    alert("Please fill in all the fields!");
+                    return;
+                }
+
+                // Compose the mailto URL
+                const subject = encodeURIComponent(`Support Request from ${name}`);
+                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nQuery: ${query}`);
+                const mailtoUrl = `mailto:support@example.com?subject=${subject}&body=${body}`;
+
+                // Attempt to open the mailto URL
+                window.location.href = mailtoUrl;
+            }
+        </script>
         {{-- @endsection --}}
 
 </body>

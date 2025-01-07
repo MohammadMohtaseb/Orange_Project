@@ -14,7 +14,7 @@
 </head>
 
 <body class="vh-100">
-    <div class="authincation h-100">
+    <div class="authincation h-100 bg-black" style="broder: solid orange !important">
         <div class="container h-100">
             <div class="row justify-content-center h-100 align-items-center">
                 @yield('content')

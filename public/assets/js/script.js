@@ -14,14 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Form submission handling
-    const supportForm = document.querySelector('.support-form form');
-    if (supportForm) {
-        supportForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message. We will get back to you soon!');
-            this.reset();
-        });
-    }
+    // const supportForm = document.querySelector('.support-form form');
+    // if (supportForm) {
+    //     supportForm.addEventListener('submit', function(e) {
+    //         e.preventDefault();
+    //         alert('Thank you for your message. We will get back to you soon!');
+    //         this.reset();
+    //     });
+    // }
 
     // Newsletter subscription
     const newsletterForm = document.querySelector('.newsletter');
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.forEach(element => {
             const position = element.getBoundingClientRect().top;
             const screenPosition = window.innerHeight / 1.3;
-            
+
             if (position < screenPosition) {
                 element.classList.add('animated');
             }

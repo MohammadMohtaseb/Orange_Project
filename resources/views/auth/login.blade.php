@@ -50,10 +50,10 @@
 
 @section('content')
     <div class="col-md-6">
-        <div class="authincation-content">
+        <div class="authincation-content" id='auth-page'>
             <div class="row no-gutters">
                 <div class="col-xl-12">
-                    <div class="auth-form">
+                    <div class="auth-form" id="auth-from">
                         <div class="text-center mb-3">
                             <img width="120" src="{{ asset('images/logo-full.png') }}" alt="">
                         </div>

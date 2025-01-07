@@ -72,6 +72,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/cohorts/{academyId}', [StudentController::class, 'getCohortsByAcademy']);
     // Route for AJAX search
     Route::get('/students/search', [StudentController::class, 'search'])->name('student.search');
+    Route::post('/students/import/', [StudentController::class, 'import'])->name('students.import');
+    Route::get('/students/go/import/', [StudentController::class, 'goImport'])->name('students.goImport');
+
 
 
 
@@ -81,7 +84,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/academies/{id}/edit', [AcademyController::class, 'edit'])->name('academy.edit');
     Route::delete('/academies/{id}', [AcademyController::class, 'destroy'])->name('academy.delete');
     Route::put('/academies/{academy}', [AcademyController::class, 'update'])->name('academy.update');
-    Route::post('/academy/import/{$academy_id}}', [AcademyController::class, 'import'])->name('academy.import');
 
 
 

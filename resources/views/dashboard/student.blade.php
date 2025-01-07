@@ -9,6 +9,10 @@
             <a href="{{ route('student.create') }}" class="btn btn-success" style="color: white">
                 <i class="fa fa-plus"></i> Add Student
             </a>
+
+            <a style="margin-left:10px" href="{{ route('students.goImport') }}" class="btn btn-primary" style="color: white">
+                <i class="fa fa-plus"></i> Import Students
+            </a>
         </div>
 
         <!-- Search input -->
@@ -60,10 +64,16 @@
 
         <!-- Pagination -->
         <div id="pagination-links">
-            {{ $students->links() }}
+            {{ $students->links('vendor.pagination.simple-numbers') }}
         </div>
     </div>
 </div>
+{{-- <script>
+    function redirectToRoute(route) {
+    window.location.href = route;
+}
+
+</script> --}}
 
 @include('dashboard.layout.footer')
 @endsection

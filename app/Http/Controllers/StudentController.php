@@ -7,6 +7,7 @@ use App\Models\Academy;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class StudentController extends Controller
 {
@@ -14,12 +15,12 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($id);
         return view('dashboard.viewStudent', compact('student'));
-    }
-    public function index(Request $request)
+    }public function index(Request $request)
     {
-        $search = $request->input('search', '');  // Default to empty string if no search term
+        $search = $request->input('search', ''); // Default to empty string if no search term
         $students = Student::where('name', 'like', '%' . $search . '%') // Search by student name
-                            ->simplePaginate(10);  // Paginate results
+                            ->paginate(10)
+                            ->onEachSide(1); // Show 1 number on each side of the current page
 
         return view('dashboard.student', compact('students'));
     }
@@ -152,6 +153,69 @@ public function search(Request $request)
         'pagination' => $students->links()->render() // Render pagination links
     ]);
 }
+
+
+public function convertDriveLinkToThumbnailUrl($driveLink) {
+    // Regular expression to extract the file ID from the Google Drive URL
+    if (preg_match('/https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)\/view/', $driveLink)) {
+    preg_match('/https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)\/view/', $driveLink, $matches);
+
+    // Check if the match was successful
+    if (isset($matches[1])) {
+        $fileId = $matches[1];
+        // Construct the thumbnail URL
+        return "https://drive.google.com/thumbnail?id=" . $fileId;
+    } else {
+        return $driveLink; // Return the original URL if it's not in the expected format
+    }
+}
+}
+
+public function import(Request $request)
+{
+    // Validate the file type
+    $request->validate([
+        'file' => 'required|mimes:xlsx,csv',
+        'academy_id' => '',
+    ]);
+
+    // Load the Excel file
+    $spreadsheet = IOFactory::load($request->file('file'));
+
+    // Get the first sheet
+    $sheet = $spreadsheet->getSheetByName('data science');
+
+    // Now, you can store other data like text/numbers from the sheet
+    $data = $sheet->toArray();
+
+    // Loop through the data and insert into the database
+    foreach ($data as $index => $row) {
+        if ($index =! 0 && !Student::where('email', $row[0])->exists() && $row[0] != Null) {
+        // Example: Assuming you have a model called "Item" for a table
+        Student::create([
+            'name' => $row[1] .' '. $row[2], // Assuming name is in the first column
+            'academy_id' => $request->academy_id,
+            'email' => $row[0],
+            // 'cohort_id' => Cohort::where('name', 'Cohrt ' . $row[0])->where('academy_id', 11)->first()->id,
+            // 'cohort_id' => (int)$row[0] + 3,
+            'cohort_id' => Cohort::where('academy_id', $request->academy_id)->where('name', 'Cohrt' . $row[6])->first()->id,
+            'linkedin' => $row[5], // Assuming price is in the third column
+            'picture' => $this->convertDriveLinkToThumbnailUrl($row[4]),
+            'employment_status' => $row[3],
+            // Add any other columns as needed
+        ]);
+    }
+    }
+
+    // Return response
+    return back()->with('success', 'File imported successfully.');
+}
+
+public function goImport() {
+    $academies = Academy::all();
+        return view('dashboard.importStudents', compact('academies'));
+}
+
 }
 
 

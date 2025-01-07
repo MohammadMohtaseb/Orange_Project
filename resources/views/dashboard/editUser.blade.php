@@ -13,7 +13,7 @@
 @section('content')
     <div class="content-body" >
         <div class="container-fluid">
-            <h2>Edit User</h2>
+            <h2>Edit Admin</h2>
         <form action="{{ route('user.update', $User->id) }}" method="POST">
             @csrf
             @method('POST')

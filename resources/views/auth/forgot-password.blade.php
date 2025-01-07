@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="col-md-6">
-        <div class="authincation-content">
+        <div class="authincation-content" style="background-color: white">
             <div class="row no-gutters">
                 <div class="col-xl-12">
                     <div class="auth-form">

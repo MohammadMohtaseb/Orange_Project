@@ -23,7 +23,14 @@ class UserController extends Controller
     $request->validate([
         'name' => ['required', 'string', 'max:255'],
         'email' => 'required|string|email|max:255|unique:users,email',
-        'password' => ['sometimes', 'nullable', 'string', 'min:8', 'regex:/[a-z]/', 'regex:/[0-9]/', 'regex:/[@$!%*?&#]/'],
+        'password' => [
+    'required',
+    'string',
+    'min:8', // At least 8 characters
+    'regex:/[a-zA-Z]/', // At least one letter (uppercase or lowercase)
+    'regex:/[0-9]/', // At least one digit
+],
+
     ]);
 
     User::create([
@@ -50,7 +57,13 @@ public function update(Request $request, $id)
     $request->validate([
         'name' => ['required', 'string', 'max:255'],
         'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-        'password' => ['sometimes', 'nullable', 'string', 'min:8', 'regex:/[a-z]/', 'regex:/[0-9]/', 'regex:/[@$!%*?&#]/'],
+        'password' => [
+            'required',
+            'string',
+            'min:8', // At least 8 characters
+            'regex:/[a-zA-Z]/', // At least one letter (uppercase or lowercase)
+            'regex:/[0-9]/', // At least one digit
+        ],
     ]);
 
     $user = User::findOrFail($id);

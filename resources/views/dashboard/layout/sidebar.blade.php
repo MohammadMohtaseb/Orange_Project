@@ -11,7 +11,7 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ route('users') }}">Users</a></li>
+                    <li><a href="{{ route('users') }}">Admins</a></li>
                     <li><a href="{{ route('students') }}">Students</a></li>
                     <li><a href="{{ route('academies') }}">Academies</a></li>
                     <li><a href="{{ route('cohorts') }}">Cohorts</a></li>

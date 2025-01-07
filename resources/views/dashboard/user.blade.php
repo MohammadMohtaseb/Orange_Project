@@ -13,10 +13,10 @@
     <div class="content-body" >
         <div class="container-fluid">
             <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
-                <h2 class="font-w600 mb-2 mr-auto">Users</h2>
+                <h2 class="font-w600 mb-2 mr-auto">Admins</h2>
 
                 <a href="{{ route('user.create') }}" class="btn btn-success" style="color: white">
-                    <i class="fa fa-plus"></i> Add User
+                    <i class="fa fa-plus"></i> Add Admin
                 </a>
             </div>
             <div class="table-responsive">

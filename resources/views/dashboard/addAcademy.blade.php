@@ -58,13 +58,6 @@
                 </div>
             </form>
 
-            <br>
-            <form action="{{ route('academy.import') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="file" name="file" required>
-                <button type="submit">Import Academy</button>
-            </form>
-
     </div>
         </div>
         @include('dashboard.layout.footer')
