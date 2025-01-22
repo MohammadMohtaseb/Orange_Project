@@ -159,17 +159,7 @@ body {
     position: relative; /* Ensure the container is positioned relative for the ::after element */
 }
 
-/* .card-containerS::after {
-    content: ""; /* Necessary for pseudo-elements */
-    position: absolute;
-    top: 50%; /* Align vertically */
-    right: -180px; /* Position it outside the container, adjust for spacing */
-    transform: translateY(-50%); /* Center it vertically */
-    width: 160px; /* Set the width */
-    height: 160px; /* Set the height */
-    background-color: #ff7900; /* Color of the shape */
-    clip-path: polygon(100% 50%, 0% 0%, 0% 100%); /* Creates a triangle pointing to the right */
-} */
+
 
 
 .cardS {
@@ -206,16 +196,17 @@ body {
 
 .avatar {
     border-radius: 50%;
-    width: 140px;
-    height: 140px;
+    width: 165px;
+    height: 166px;
     object-fit: cover;
     position: absolute;
-    top: 91px;
+    top: 150px;
     left: 24%;
     transform: translateX(-50%);
     border: 4px solid white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 .cardS h2 {
     padding: 20px;
